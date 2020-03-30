@@ -1,0 +1,65 @@
+Name1: Olumide Okubanjo (1573500)
+Name2: Mohamed Ali (1573724) 
+CMPUT 275 Wi20
+Major Assignment 2: Driving Route Finder Part - 1
+
+Included Files:
+    digraph.cpp
+    digraph.h
+    dijkstra.h
+    heap.h
+    Makefile
+    server.cpp
+    utils.h
+    wdigraph.h
+    edmonton-roads-2.0.1.txt
+    README
+    Makefile
+
+Accessories:
+    No accessories needed for this program
+    
+Running Instructions:
+    Navigate to the folder containing all the filed specified in the Included Files section.
+    Type "make"
+    To test the program with a custum input file type. " ./server < test00-input.txt > mysol.txt "
+    Type "diff mysol.txt test00-output.txt" to verify the output of the program. 
+
+Makefile Targets:
+    In the make file there are three main targets.
+        Target 1 is the main target that builds the server exectuable program from the server object and 
+        the digraph object.
+
+        Target 2 is the server object creation, this target that complies the server.cpp, wdigraph.h, utils.h, dijkstra.h to
+        create the server object.
+
+        Target 3 is the digraph object creation, this targer comples the digraph.cpp and digraph.h to create the digraph object.
+
+Notes and Assumptions:
+    We assume the format of for the edmonton input file is either:
+        V id lat lon 
+        or
+        E id id street_name
+    We assume that the correct files are in the folder when "make" if typed in the terminal.
+    We assume that no solution file has been made before running the program.
+    We assume only valid requests will be passed in.
+
+    The readGraph that we were required to implement can be found in the utils.h file.
+    The cost function can be found in the utils.h file.
+    The dijkstra implementation can be found in the dijkstra.h file.
+    The findStartAndEndVertexes can be found in the utils.h file.
+    
+
+Functionality:
+    This program is an implementation of the first half of the second major assignment in cmput 275.
+    This program has a function for parsing the text file describing the road network.This functio builds the directed graph
+    and stores coordnates of ever vertex.
+    
+    The program has a function that computes the manhattan distance between every two verticies of the graph. This function is called by the function
+    that builds teh graph to compute the weight of an edge before it is added to the graph.
+
+    The program effeicietly computes the least cost paths startig from a given vertex.
+
+    Upon starup the server leads the edmonton map data into a wdigraph object, and stores the information about the vertex location in an appropriate data structure. 
+    The program then receives input requests and returns the number of points that will get you from one position to another.
+    These points are relayed one by one from the server to the aruduino as the aruduino sends "A" to the server to indicate that another point is needed.
